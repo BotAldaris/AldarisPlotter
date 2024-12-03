@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <canvas id="text" width="400" height="300"></canvas>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+  <script id="vertex-shader-2d" type="notjs">
+
+  attribute vec4 a_position;
+
+  uniform vec2 u_resolution;
+
+  void main() {
+     // convert the position from pixels to 0.0 to 1.0
+     vec2 zeroToOne = a_position.xy / u_resolution;
+      gl_PointSize = 2.0;
+     // convert from 0->1 to 0->2
+     vec2 zeroToTwo = zeroToOne * 2.0;
+
+     // convert from 0->2 to -1->+1 (clipspace)
+     vec2 clipSpace = zeroToTwo - 1.0;
+
+     gl_Position = vec4(clipSpace , 0, 1);
+  }
+             
+            </script>
+
+  <script id="fragment-shader-2d" type="notjs">
+              precision mediump float;
+
+              uniform vec4 u_color;
+
+              void main() {
+                gl_FragColor = u_color;
+              }
+                          
+            </script>
+</body>
+
+</html>

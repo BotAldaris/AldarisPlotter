@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+}
+
+#text {
+    background-color: transparent;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+}
+canvas {
+    display: block; /* Remove espaços ao redor do canvas */
+    width: 60vw;  /* 100% da largura da janela */
+    height: 30vh; /* 100% da altura da janela */
+}
+@media (min-width: 1024px){
+    canvas {
+    width: 40vw;  /* 100% da largura da janela */
+    height: 30vh; /* 100% da altura da janela */
+}
+}
